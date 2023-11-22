@@ -1,0 +1,17 @@
+<!-- mi_pagina.html -->
+{% extends "index.html" %}
+
+{% block content %}
+
+    <h2>TUS ETIQUETAS</h2>
+    <table class="enterprise_table">
+        <tr>
+            <th>Nombre</th>
+        </tr>
+        {% for etiqueta in etiquetas %}
+        <tr>
+            <td>{{ etiqueta }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

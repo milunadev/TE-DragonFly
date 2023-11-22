@@ -28,10 +28,15 @@ def crear_prueba_http(email, auth_token, agent_ids, test_name, test_url, agregar
 
     if response.status_code in (200, 201):
         print("Prueba HTTP creada exitosamente.")
-        print(response.json())
+        nombre = response.json()['test'][0]['testName']
+        agentes = response.json()['test'][0]['agents']
+        nombres_agentes = ' --  '.join([agente['agentName'] for agente in agentes])
+        mensaje_exito = "Prueba {nombre} creada exitosamente desde los agentes: {agente}".format(nombre=nombre, agente=nombres_agentes)
+        return mensaje_exito
     else:
         print(f"Error al crear la prueba. Código de estado: {response.status_code}")
         print("Mensaje de error:", response.text)
+        return f"Mensaje de error: {response.text}"
 
 def listar_etiquetas(email, auth_token):
     # Define los datos necesarios
@@ -72,14 +77,35 @@ def existe_etiqueta_dragonfly(email, auth_token):
 
     if response.status_code == 200:
         if response.json() and 'groups' in response.json():
-            for grupo in response.json()['groups']:
-                if grupo.get('name', '') == 'Dragonfly':
-                    return "La etiqueta DRAGONFLY YA está creada"
-        return "NO está creada la etiqueta"
+            etiqueta_existe = any(grupo.get('name', '') == 'Dragonfly' for grupo in response.json()['groups'])
+            if etiqueta_existe:
+                return "La etiqueta DRAGONFLY YA está creada 😀"
+            else:
+                creation_response = crear_etiqueta_dragonfly(email, auth_token)
+                return creation_response
+        return "No se encontraron grupos"
     else:
         print(f"Error al verificar la etiqueta. Código de estado: {response.status_code}")
         print("Mensaje de error:", response.text)
         return "Error en consulta API"
+
+def crear_etiqueta_dragonfly():
+    url = "https://api.thousandeyes.com/v6/groups/tests/new"
+    headers = {"Content-Type": "application/json"}
+    auth = (email, auth_token)
+    data = {
+        "name" : "Dragonfly"
+    }
+    response = requests.post(url, json=data, headers=headers, auth=auth)
+
+    if response.status_code in (200, 201):
+        print("Etiqueta Dragonfly creada exitosamente.")
+        return "Etiqueta Dragonfly creada exitosamente 😀"
+    else:
+        print(f"Error al crear la etiqueta: {response.status_code}")
+        print("Mensaje de error:", response.text)
+        return f"Mensaje de error: {response.text} 😨"
+
 
 def obtener_agentes(email, auth_token, agent_types='enterprise'):
     # Define la URL base para obtener la lista de agentes

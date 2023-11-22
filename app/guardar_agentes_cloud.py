@@ -23,7 +23,7 @@ def main():
     args = parser.parse_args()
 
     email = "michluna@cisco.com"
-    auth_token = "l2qxth9d44cgqrp5n4xgyvi845ekxodh"
+    auth_token = ""
 
 
     if args.actualizar_agentes:

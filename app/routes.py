@@ -4,7 +4,7 @@ from app.api_handler import listar_etiquetas, existe_etiqueta_dragonfly, obtener
 from app.funciones import obtener_datos_agentes
 
 email = "michluna@cisco.com"
-auth_token = "l2qxth9d44cgqrp5n4xgyvi845ekxodh"
+auth_token = ""
 
 @app.route('/')
 def index():
@@ -13,7 +13,7 @@ def index():
 @app.route('/listar_etiquetas', methods=['GET', 'POST'])
 def listar_etiquetas_ruta():
     email = "michluna@cisco.com"
-    auth_token = "l2qxth9d44cgqrp5n4xgyvi845ekxodh"
+    auth_token = ""
 
     if request.method == 'POST':
         accion = request.form.get('accion')
@@ -33,7 +33,7 @@ def listar_etiquetas_ruta():
 @app.route('/listar_agentes', methods=['POST'])
 def listar_agentes_ruta():
     mail = "michluna@cisco.com"
-    auth_token = "l2qxth9d44cgqrp5n4xgyvi845ekxodh"
+    auth_token = ""
     if request.method == 'POST':
         agentes = obtener_agentes(mail,auth_token)
         return render_template('enterprise_table.html', agentes=agentes)

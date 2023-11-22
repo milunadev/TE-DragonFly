@@ -21,14 +21,18 @@ def crear_etiqueta(email, auth_token, etiqueta_nombre, test_ids):
         print("Mensaje de error:", response.text)
 
 
-def crear_prueba_http(email, auth_token, agent_id, test_name, url):
-    url = "https://api.thousandeyes.com/v6/tests/http-server/new.json"
+def crear_prueba_http(email, auth_token, agent_id, test_name, url, agregar_dragonfly):
+    api_url = "https://api.thousandeyes.com/v6/tests/http-server/new.json"
     data = {
-        "interval": 300,  #5 minutos por defecto
+        "interval": 300,
         "agents": [{"agentId": agent_id}],
         "testName": test_name,
-        "url": url,
+        "url": url
     }
+
+    if agregar_dragonfly:
+        data["groups"] = [{"name": "Dragonfly"}]
+        
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json"

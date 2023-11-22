@@ -1,0 +1,121 @@
+import requests
+
+email = "michluna@cisco.com"
+auth_token = "l2qxth9d44cgqrp5n4xgyvi845ekxodh"
+#etiqueta_nombre = input("Ingresa el nombre de la etiqueta: ")
+
+
+def crear_prueba_http(email, auth_token, agent_ids, test_name, test_url, agregar_dragonfly):
+    api_url = "https://api.thousandeyes.com/v6/tests/http-server/new.json"
+    
+    data = {
+        "interval": 300,
+        "agents": [{"agentId": agent_id} for agent_id in agent_ids],
+        "testName": test_name,
+        "url": test_url
+    }
+
+    if agregar_dragonfly:
+        data["groups"] = [{"name": "Dragonfly", "groupId": 767156, "builtin": 0}]
+    
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
+    auth = (email, auth_token)
+
+    response = requests.post(api_url, json=data, headers=headers, auth=auth)
+
+    if response.status_code in (200, 201):
+        print("Prueba HTTP creada exitosamente.")
+        print(response.json())
+    else:
+        print(f"Error al crear la prueba. Código de estado: {response.status_code}")
+        print("Mensaje de error:", response.text)
+
+def listar_etiquetas(email, auth_token):
+    # Define los datos necesarios
+    url = "https://api.thousandeyes.com/v6/groups.json"
+    headers = {"Content-Type": "application/json"}
+    auth = (email, auth_token)
+
+    # Realiza la solicitud GET
+    response = requests.get(url, headers=headers, auth=auth)
+
+    # Inicializa una lista vacía para almacenar los nombres de las etiquetas
+    etiquetas = []
+
+    # Verifica si el código de estado es 200 (éxito)
+    if response.status_code == 200:
+        # Comprueba si la respuesta no está vacía y contiene 'groups'
+        if response.json() and 'groups' in response.json():
+            # Itera sobre cada grupo en la lista de 'groups'
+            for grupo in response.json()['groups']:
+                # Extrae el nombre de cada grupo y lo añade a la lista de etiquetas
+                nombre_etiqueta = grupo.get('name', '')  # Usa un valor por defecto si 'name' no existe
+                etiquetas.append(nombre_etiqueta)
+
+        # Retorna la lista de nombres de etiquetas
+        return sorted(etiquetas)
+
+    else:
+        print(f"Error al listar las etiquetas. Código de estado: {response.status_code}")
+        print("Mensaje de error:", response.text)
+        return []
+
+def existe_etiqueta_dragonfly(email, auth_token):
+    url = "https://api.thousandeyes.com/v6/groups.json"
+    headers = {"Content-Type": "application/json"}
+    auth = (email, auth_token)
+
+    response = requests.get(url, headers=headers, auth=auth)
+
+    if response.status_code == 200:
+        if response.json() and 'groups' in response.json():
+            for grupo in response.json()['groups']:
+                if grupo.get('name', '') == 'Dragonfly':
+                    return "La etiqueta DRAGONFLY YA está creada"
+        return "NO está creada la etiqueta"
+    else:
+        print(f"Error al verificar la etiqueta. Código de estado: {response.status_code}")
+        print("Mensaje de error:", response.text)
+        return "Error en consulta API"
+
+def obtener_agentes(email, auth_token, agent_types='enterprise'):
+    # Define la URL base para obtener la lista de agentes
+    base_url = "https://api.thousandeyes.com/v6/agents.json"
+
+    # Define los parámetros de consulta (querystring) si se proporcionan agent_types
+    params = {}
+    if agent_types:
+        params["agentTypes"] = 'ENTERPRISE'
+
+    # Define las cabeceras de autenticación
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+    }
+    auth = (email, auth_token)
+
+    # Realiza la solicitud GET con los parámetros de consulta
+    response = requests.get(base_url, params=params, headers=headers, auth=auth)
+    enterprise_agents = []
+    # Verifica si la solicitud fue exitosa (código de estado 200)
+    print(response.json())
+    if response.status_code == 200:
+        if response.json() and 'agents' in response.json():
+            for agent in response.json()['agents']:
+                agent_id = agent.get('agentId')
+                agent_name = agent.get('agentName')
+                location = agent.get('location')
+
+                enterprise_agents.append({
+                'agentId': agent_id,
+                'agentName': agent_name,
+                'location': location
+            })
+        return enterprise_agents
+    else:
+        print(f"Error al obtener la lista de agentes. Código de estado: {response.status_code}")
+        print("Mensaje de error:", response.text)
+        return []

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Agentes Cloud</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                height: 100vh;
+                background-color: #f4f4f4;
+                justify-content: center;
+            }
+            h1 {
+                margin-bottom: 20px;
+            }
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                max-width: 900px; /* Ajusta esto según el ancho deseado */
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            th, td {
+                text-align: center;
+                padding: 8px;
+                border: 1px solid #f65d11;
+                word-break: break-word; /* Asegura que el texto largo se ajuste en la celda */
+            }
+
+            th {
+                background-color: #f65d11;
+                color: white;
+            }
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            tr:hover {
+                background-color: #ddd;
+            }
+            @media screen and (max-width: 800px) {
+                table {
+                    width: 95%; /* Ajuste de ancho para dispositivos más pequeños */
+                }
+            }
+        </style>
+    </head>
+<body>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Ubicación</th>
+        </tr>
+        {% for agente in cloud_agents %}
+        <tr>
+            <td>{{ agente.agentId }}</td>
+            <td>{{ agente.agentName }}</td>
+            <td>{{ agente.location }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Gestión de Pruebas ThousandEyes</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <!-- Puedes agregar aquí CSS o fuentes externas si lo necesitas -->
+</head>
+<body>  
+    <h1 class="title">Gestión de Pruebas ThousandEyes</h1>
+    <main class="main-container" >
+        
+    
+        <section >
+                <!-- Sección para Validar y Crear Etiqueta -->
+            <div>
+                <h2>1. Validar y Crear Etiqueta</h2>
+                <form action="/listar_etiquetas" method="post">
+                    <input type="hidden" name="accion" value="listar_etiquetas">
+                    <input type="submit" value="Listar Etiquetas">
+                </form>
+                <form action="/listar_etiquetas" method="post">
+                    <input type="hidden" name="accion" value="validar_dragonfly">
+                    <input type="submit" value="Validar DragonFly">
+                </form>
+            </div>
+
+            <!-- Sección para Listar Agentes -->
+            <div>
+                <h2>2. Listar Agentes</h2>
+                <form action="/listar_agentes" method="post">
+                    <input type="submit" value="Iniciar">
+                </form>
+                <form action="/agentes_cloud_tabla" method="post">
+                    <input type="submit" value="Ver lista completa de Cloud Agents">
+                </form>
+            </div>
+
+            <!-- Sección para Crear Prueba HTTP -->
+            <div>
+                <h2>3. Crear Prueba HTTP</h2>
+                <form action="/crear_prueba_http" method="post">
+                    <label for="agent_ids">IDs de Agentes (separados por comas):</label><br>
+                    <input type="text" id="agent_ids" name="agent_ids"><br>
+                
+                    <label for="urls">URLs (separadas por comas):</label><br>
+                    <input type="text" id="urls" name="urls"><br>
+                
+                    <input type="checkbox" id="dragonfly" name="dragonfly">
+                    <label for="dragonfly">Agregar etiqueta Dragonfly</label><br>
+                
+                    <input type="submit" value="Crear Prueba">
+                </form>
+            </div>
+        </section>
+
+        <section>
+            <h1>RESULTADOS</h1>
+            <ul>
+                {% for etiqueta in etiquetas %}
+                    <li>{{ etiqueta }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>{{etiqueta_mensaje}}</h3>
+            
+            <section>
+                {% block content %}
+                <!-- Contenido principal, será sobreescrito en plantillas hijas -->
+                {% endblock %}
+            </section>
+            
+        </section>
+        
+
+    
+    </main>
+    
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+
+:root {
+    --main-orange-color: #f65d11
+  }
+
+.title{
+    text-align: center;
+}
+
+.main-container{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+}
+
+.enterprise_table{
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px; /* Ajusta esto según el ancho deseado */
+    box-shadow: 0 0 10px rgba(73, 60, 50, 0.428);
+}
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    border: 1px solid var(--main-orange-color);
+    word-break: break-word; /* Asegura que el texto largo se ajuste en la celda */
+}

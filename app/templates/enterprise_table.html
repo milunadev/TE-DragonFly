@@ -1,0 +1,21 @@
+<!-- mi_pagina.html -->
+{% extends "index.html" %}
+
+
+
+{% block content %}
+<table class="enterprise_table">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+    </tr>
+    {% for agente in agentes %}
+    <tr>
+        <td>{{ agente.agentId }}</td>
+        <td>{{ agente.agentName }}</td>
+        <td>{{ agente.location }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

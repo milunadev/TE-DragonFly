@@ -4,65 +4,71 @@
     <meta charset="UTF-8">
     <title>Inicio - Gestión de Pruebas ThousandEyes</title>
     <link rel="stylesheet" href="../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;600&family=Ubuntu:wght@300;500&display=swap" rel="stylesheet">
     <!-- Puedes agregar aquí CSS o fuentes externas si lo necesitas -->
 </head>
 <body>  
-    <h1 class="title">Gestión de Pruebas ThousandEyes</h1>
+    <h1 class="title">OneClickTest - ThousandEyes </h1>
     <main class="main-container" >
         
     
         <section >
                 <!-- Sección para Validar y Crear Etiqueta -->
+            <h1>Menu OneClickTest</h1>
             <div>
-                <h2>1. Validar y Crear Etiqueta</h2>
+                <h2>- Validar y Crear Etiqueta</h2>
                 <form action="/listar_etiquetas" method="post">
                     <input type="hidden" name="accion" value="listar_etiquetas">
-                    <input type="submit" value="Listar Etiquetas">
+                    <input class="boton-menu"  type="submit" value="Listar todas mis etiquetas">
                 </form>
                 <form action="/listar_etiquetas" method="post">
-                    <input type="hidden" name="accion" value="validar_dragonfly">
-                    <input type="submit" value="Validar DragonFly">
+                    <input  type="hidden" name="accion" value="validar_dragonfly">
+                    <input class="boton-menu" type="submit" value="Validar y crear Dragonfly">
                 </form>
             </div>
 
             <!-- Sección para Listar Agentes -->
             <div>
-                <h2>2. Listar Agentes</h2>
+                <h2>- Listar Agentes</h2>
                 <form action="/listar_agentes" method="post">
-                    <input type="submit" value="Iniciar">
+                    <input class="boton-menu" type="submit" value="Ver agentes: Short version">
                 </form>
                 <form action="/agentes_cloud_tabla" method="post">
-                    <input type="submit" value="Ver lista completa de Cloud Agents">
+                    <input class="boton-menu" type="submit" value="Ver todos los agentes cloud">
                 </form>
             </div>
 
             <!-- Sección para Crear Prueba HTTP -->
             <div>
-                <h2>3. Crear Prueba HTTP</h2>
-                <form action="/crear_prueba_http" method="post">
-                    <label for="agent_ids">IDs de Agentes (separados por comas):</label><br>
-                    <input type="text" id="agent_ids" name="agent_ids"><br>
+                <h2>- Crear Prueba HTTP</h2>
+                <form class="formTest" action="/crear_prueba_http" method="post">
+                    <label class="label_menu"  for="agent_ids">IDs de Agentes (separados por comas):
+                        <input class="input_menu" type="text" id="agent_ids" name="agent_ids">
+                    </label>
+                    
                 
-                    <label for="urls">URLs (separadas por comas):</label><br>
-                    <input type="text" id="urls" name="urls"><br>
+                    <label class="label_menu" for="urls">URLs (separadas por comas):
+                        <input class="input_menu"  type="text" id="urls" name="urls">
+                    </label>
+                    
                 
-                    <input type="checkbox" id="dragonfly" name="dragonfly">
-                    <label for="dragonfly">Agregar etiqueta Dragonfly</label><br>
+                    
+                    <label class="check_menu"  for="dragonfly">Agregar etiqueta Dragonfly: 
+                        <input type="checkbox" id="dragonfly" name="dragonfly">
+                    </label>
                 
-                    <input type="submit" value="Crear Prueba">
+                    <input class="boton-menu" type="submit" value="Crear Prueba">
                 </form>
             </div>
         </section>
 
-        <section>
-            <h1>RESULTADOS</h1>
-            <ul>
-                {% for etiqueta in etiquetas %}
-                    <li>{{ etiqueta }}</li>
-                {% endfor %}
-            </ul>
+        <section >
+            <h1>Resultados OneClickTest</h1>
+            
 
-            <h3>{{etiqueta_mensaje}}</h3>
+            <p>{{etiqueta_mensaje}}</p>
             
             <section>
                 {% block content %}
@@ -75,7 +81,9 @@
 
     
     </main>
-    
+    <footer class="footer">
+        Desarrollado con <span class="heart">&hearts;</span> por Michelle Luna - <a href="https://github.com/milunadev" target="_blank">@Milunadev</a>
+    </footer>
 
 </body>
 </html>

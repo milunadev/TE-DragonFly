@@ -4,13 +4,15 @@
 
 
 {% block content %}
+<div style="overflow-y: scroll; height: 100%;">
+    <h2>Agentes Enterprise</h2>
 <table class="enterprise_table">
     <tr>
         <th>ID</th>
         <th>Nombre</th>
         <th>Ubicación</th>
     </tr>
-    {% for agente in agentes %}
+    {% for agente in agentes_enterprise %}
     <tr>
         <td>{{ agente.agentId }}</td>
         <td>{{ agente.agentName }}</td>
@@ -18,4 +20,24 @@
     </tr>
     {% endfor %}
 </table>
+
+
+<h2>Agentes Cloud</h2>
+<table  class="enterprise_table">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Ubicación</th>
+    </tr>
+    {% for agente in agentes_cloud %}
+    <tr>
+        <td>{{ agente.agentId }}</td>
+        <td>{{ agente.agentName }}</td>
+        <td>{{ agente.location }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+
 {% endblock %}

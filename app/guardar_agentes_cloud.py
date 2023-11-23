@@ -1,10 +1,11 @@
 import requests
 import json
+from .config import AUTH_TOKEN, EMAIL
 
-def guardar_agentes_cloud(email, auth_token):
+def guardar_agentes_cloud():
     url = "https://api.thousandeyes.com/v6/agents.json?agentTypes=CLOUD"
     headers = {"Content-Type": "application/json"}
-    auth = (email, auth_token)
+    auth = (EMAIL,AUTH_TOKEN)
 
     response = requests.get(url, headers=headers, auth=auth)
 
@@ -22,15 +23,12 @@ def main():
 
     args = parser.parse_args()
 
-    email = "michluna@cisco.com"
-    auth_token = ""
-
 
     if args.actualizar_agentes:
-        guardar_agentes_cloud(email, auth_token)
+        guardar_agentes_cloud()
     else:
         # Si no se utiliza el comando, igualmente actualiza la lista al iniciar
-        guardar_agentes_cloud(email, auth_token)
+        guardar_agentes_cloud()
         app.run(debug=True)  # O cualquier otra configuración con la que inicies Flask
 
 if __name__ == '__main__':

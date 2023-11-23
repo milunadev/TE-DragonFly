@@ -36,7 +36,7 @@ Configura las variables de entorno necesarias para la autenticación:
 Instala las dependencias necesarias para ejecutar la aplicación:
 
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 

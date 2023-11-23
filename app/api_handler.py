@@ -84,7 +84,7 @@ def existe_etiqueta_dragonfly():
             if etiqueta_existe:
                 return "La etiqueta DRAGONFLY YA está creada 😀"
             else:
-                creation_response = crear_etiqueta_dragonfly(email, auth_token)
+                creation_response = crear_etiqueta_dragonfly()
                 return creation_response
         return "No se encontraron grupos"
     else:

@@ -4,7 +4,8 @@
 
 
 {% block content %}
-<h2>Agentes Enterprise</h2>
+<div style="overflow-y: scroll; height: 100%;">
+    <h2>Agentes Enterprise</h2>
 <table class="enterprise_table">
     <tr>
         <th>ID</th>
@@ -22,7 +23,7 @@
 
 
 <h2>Agentes Cloud</h2>
-<table class="enterprise_table">
+<table  class="enterprise_table">
     <tr>
         <th>ID</th>
         <th>Nombre</th>
@@ -36,5 +37,7 @@
     </tr>
     {% endfor %}
 </table>
+</div>
+
 
 {% endblock %}

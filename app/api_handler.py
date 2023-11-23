@@ -1,11 +1,10 @@
 import requests
+from .config import AUTH_TOKEN, EMAIL
 
-email = "michluna@cisco.com"
-auth_token = "l2qxth9d44cgqrp5n4xgyvi845ekxodh"
 #etiqueta_nombre = input("Ingresa el nombre de la etiqueta: ")
 
 
-def crear_prueba_http(email, auth_token, agent_ids, test_name, test_url, agregar_dragonfly):
+def crear_prueba_http(agent_ids, test_name, test_url, agregar_dragonfly):
     api_url = "https://api.thousandeyes.com/v6/tests/http-server/new.json"
     
     data = {
@@ -22,27 +21,31 @@ def crear_prueba_http(email, auth_token, agent_ids, test_name, test_url, agregar
         "Content-Type": "application/json",
         "Accept": "application/json"
     }
-    auth = (email, auth_token)
+    auth = (EMAIL, AUTH_TOKEN)
 
     response = requests.post(api_url, json=data, headers=headers, auth=auth)
 
     if response.status_code in (200, 201):
-        print("Prueba HTTP creada exitosamente.")
-        nombre = response.json()['test'][0]['testName']
-        agentes = response.json()['test'][0]['agents']
-        nombres_agentes = ' --  '.join([agente['agentName'] for agente in agentes])
-        mensaje_exito = "Prueba {nombre} creada exitosamente desde los agentes: {agente}".format(nombre=nombre, agente=nombres_agentes)
+        response_data = response.json()  # Convierte la respuesta JSON en un diccionario
+        test_info = response_data.get('test', [])[0]  # Asegúrate de que 'test' es la clave correcta
+        nombre = test_info.get('testName')
+        agentes = test_info.get('agents', [])
+        nombres_agentes = '  |  '.join([agente.get('agentName') for agente in agentes])
+        print(nombre, agentes, nombres_agentes)
+        mensaje_exito = "Prueba {nombre} creada exitosamente desde los agentes\n: {agentes}".format(
+            nombre=nombre, agentes=nombres_agentes)
+        print(mensaje_exito)
         return mensaje_exito
     else:
         print(f"Error al crear la prueba. Código de estado: {response.status_code}")
         print("Mensaje de error:", response.text)
         return f"Mensaje de error: {response.text}"
 
-def listar_etiquetas(email, auth_token):
+def listar_etiquetas():
     # Define los datos necesarios
     url = "https://api.thousandeyes.com/v6/groups.json"
     headers = {"Content-Type": "application/json"}
-    auth = (email, auth_token)
+    auth = (EMAIL, AUTH_TOKEN)
 
     # Realiza la solicitud GET
     response = requests.get(url, headers=headers, auth=auth)
@@ -68,10 +71,10 @@ def listar_etiquetas(email, auth_token):
         print("Mensaje de error:", response.text)
         return []
 
-def existe_etiqueta_dragonfly(email, auth_token):
+def existe_etiqueta_dragonfly():
     url = "https://api.thousandeyes.com/v6/groups.json"
     headers = {"Content-Type": "application/json"}
-    auth = (email, auth_token)
+    auth = (EMAIL, AUTH_TOKEN)
 
     response = requests.get(url, headers=headers, auth=auth)
 
@@ -92,7 +95,7 @@ def existe_etiqueta_dragonfly(email, auth_token):
 def crear_etiqueta_dragonfly():
     url = "https://api.thousandeyes.com/v6/groups/tests/new"
     headers = {"Content-Type": "application/json"}
-    auth = (email, auth_token)
+    auth = (EMAIL, AUTH_TOKEN)
     data = {
         "name" : "Dragonfly"
     }
@@ -107,7 +110,7 @@ def crear_etiqueta_dragonfly():
         return f"Mensaje de error: {response.text} 😨"
 
 
-def obtener_agentes(email, auth_token, agent_types='enterprise'):
+def obtener_agentes( agent_types='enterprise'):
     # Define la URL base para obtener la lista de agentes
     base_url = "https://api.thousandeyes.com/v6/agents.json"
 
@@ -121,7 +124,7 @@ def obtener_agentes(email, auth_token, agent_types='enterprise'):
         "Content-Type": "application/json",
         "Accept": "application/json"
     }
-    auth = (email, auth_token)
+    auth = (EMAIL, AUTH_TOKEN)
 
     # Realiza la solicitud GET con los parámetros de consulta
     response = requests.get(base_url, params=params, headers=headers, auth=auth)

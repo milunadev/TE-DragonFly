@@ -1,6 +1,7 @@
 import requests
 from .config import AUTH_TOKEN, EMAIL
 
+
 #etiqueta_nombre = input("Ingresa el nombre de la etiqueta: ")
 
 

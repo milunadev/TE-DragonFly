@@ -28,7 +28,6 @@ def listar_etiquetas_ruta():
 
 @app.route('/listar_agentes', methods=['POST'])
 def listar_agentes_ruta():
-
     if request.method == 'POST':
         agentes_enterprise = obtener_agentes()
         agentes_cloud = obtener_agentes_SouthAmerica()

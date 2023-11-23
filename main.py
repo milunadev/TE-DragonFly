@@ -81,8 +81,7 @@ def obtener_agentes(email, auth_token, agent_types=None):
 # Solicitar al usuario que ingrese sus datos
 #email = input("Ingresa tu dirección de correo electrónico: ")
 #auth_token = input("Ingresa tu credencial (AuthToken): ")
-email = "michluna@cisco.com"
-auth_token = "l2qxth9d44cgqrp5n4xgyvi845ekxodh"
+
 etiqueta_nombre = input("Ingresa el nombre de la etiqueta: ")
 test_ids = input("Ingresa los IDs de los tests (separados por comas): ").split(',')
 

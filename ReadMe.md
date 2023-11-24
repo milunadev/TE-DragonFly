@@ -19,7 +19,7 @@ Para obtener tu token de autenticación de ThousandEyes:
 1. Accede al dashboard de **"Profile"** en la consola de ThousandEyes.
 2. Localiza y copia tu API Token. Se recomienda usar el token básico para la autenticación.
 
-![texto cualquiera por si no carga la imagen](TOKEN_TE.png)
+![texto cualquiera por si no carga la imagen](TOKEN_TE_blurr.png)
 
 ## Configuración de Variables de Entorno
 Configura las variables de entorno necesarias para la autenticación:

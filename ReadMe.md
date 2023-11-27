@@ -27,7 +27,11 @@ Para obtener tu token de autenticación de ThousandEyes:
 1. Accede al dashboard de **"Profile"** en la consola de ThousandEyes.
 2. Localiza y copia tu API Token. Se recomienda usar el token básico para la autenticación.
 
-![texto cualquiera por si no carga la imagen](TOKEN_TE_blurr.png)
+<p align="center">
+    <img src="static/TOKEN_TE_blurr.png" width="600" />
+</p>
+
+
 
 ### Configuración de Variables de Entorno
 Configura las variables de entorno necesarias para la autenticación:
@@ -63,7 +67,11 @@ oneclick.bat
 ```
 - Haciendo doble clic directamente en el archivo oneclick.bat.
 
-![texto cualquiera por si no carga la imagen](static/ejecutable.png)
+<p align="center">
+    <img src="static/ejecutable.png" width="400" />
+</p>
+
+
 
 #### macOS
 Para macOS, sigue estos pasos para ejecutar oneclick.sh:

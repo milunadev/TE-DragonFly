@@ -95,6 +95,7 @@ Por ahora OneClickTest tiene las siguientes funciones:
 ![Alt text](static/enterprise.png)
 
 4. Lista todos los agentes Cloud disponibles y los **Agent_id**.
+
 ![Alt text](static/image.png)
 
 5. CREA TUS PRUEBAS! Solo debes poner el **Agent_id** o varios separados por comas, también puees poner los dominios separados por comas. Adicionalmente puedes etiquetarlas en tu grupo Dragonfly marcando la casilla. 
@@ -102,6 +103,7 @@ Por ahora OneClickTest tiene las siguientes funciones:
  - ⏳ La API de TE para crear pruebas suele tardar de 1-2 minutos por prueba. Asi que puedes ocuparte o ir por un cafecito ☕ y volver para revisar que se hayan creado correctamente, el mensaje aparecerá en pantalla.
 
 - Aqui un ejemplo: He creado 2 pruebas, una hacia OpenAI y otra hacia GitHub. Ambas desde 3 agentes (Lima, Bogota y mi agente enterprise).
+
 ![Alt text](static/image-1.png)
 
 - Asi se ve el resultado, despues de unos minutos de espera:

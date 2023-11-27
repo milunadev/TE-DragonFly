@@ -89,25 +89,39 @@ python run.py
 Por ahora OneClickTest tiene las siguientes funciones:
 1. Lista todas tus etiquetas de ThousandEyes
 2. Valida y crea la etiqueta 'Dragonfly', necesaria para acceder a esta herramienta de analisis poderosa, pronto disponible.
-![Alt text](static/tags.png)
+!<p align="center">
+    <img src="static/tags.png" width="400" />
+</p>
 
 3. Lista tus agentes Enterprise y los principales agentes cloud de Sudamerica, se muestra el **Agent_id** que usaras para crear tus pruebas.
-![Alt text](static/enterprise.png)
+<p align="center">
+    <img src="static/enterprise.png" width="400" />
+</p>
 
 4. Lista todos los agentes Cloud disponibles y los **Agent_id**.
 
-![Alt text](static/image.png)
+<p align="center">
+    <img src="static/image.png" width="400" />
+</p>
+
 
 5. CREA TUS PRUEBAS! Solo debes poner el **Agent_id** o varios separados por comas, también puees poner los dominios separados por comas. Adicionalmente puedes etiquetarlas en tu grupo Dragonfly marcando la casilla. 
 
  - ⏳ La API de TE para crear pruebas suele tardar de 1-2 minutos por prueba. Asi que puedes ocuparte o ir por un cafecito ☕ y volver para revisar que se hayan creado correctamente, el mensaje aparecerá en pantalla.
 
 - Aqui un ejemplo: He creado 2 pruebas, una hacia OpenAI y otra hacia GitHub. Ambas desde 3 agentes (Lima, Bogota y mi agente enterprise).
+<p align="center">
+    <img src="static/image-1.png" width="200" />
+</p>
 
-![Alt text](static/image-1.png)
+6.  Asi se ve el resultado, despues de unos minutos de espera:
 
-- Asi se ve el resultado, despues de unos minutos de espera:
-![Alt text](static/image-2.png)
+<p align="center">
+    <img src="static/image-2.png" width="500" />
+</p>
 
 🎉 Así se ve en el dashboard, mis dos pruebas HTTP con la etiqueta Dragonfly 🎉.
-![Alt text](static/image-3.png)
+
+<p align="center">
+    <img src="static/image-3.png" width="500" />
+</p>

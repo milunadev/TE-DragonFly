@@ -10,7 +10,7 @@ html{
 }
 
 body{
-    overflow-y: hidden;
+    overflow-y: auto;
     font-family: 'Ubuntu', sans-serif;
     font-weight: 400;
     margin: 0px;
@@ -50,16 +50,24 @@ h2 {
     flex-direction: row;
     gap: 100px;
     margin-top: 80px;
-    
+    height: 100%;
 
 }
 
 .main-container section{
-    height: 80%;
+    height: 100%;
+    margin-bottom:60px;
     
 }
 
+.resultados-container{
+    height: 100%;
+}
 
+
+.resultados-container section{
+    height: 90%;
+}
 
 .enterprise_table{
   
@@ -138,8 +146,7 @@ th, td {
     background-color: var(--main-blue-color);
     color: white;
     text-align: center;
-    position: absolute;
-    bottom: 0;
+    margin-bottom: 0px;
     width: 100%;
 
 }

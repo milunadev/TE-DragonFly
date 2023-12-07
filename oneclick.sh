@@ -16,4 +16,4 @@ fi
 cd "$SCRIPT_DIR"
 
 # Ejecutar tu aplicación Flask
-python run.py
+python3 run.py
